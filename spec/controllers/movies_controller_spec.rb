@@ -1,0 +1,37 @@
+require 'spec_helper'
+
+describe MoviesController do
+	describe 'searching for movies with same director' do
+		before :each do
+			@fake_results = [mock('movie1'), mock('movie2')]
+		end
+		it 'should call the model method that performs same director search' do
+			Movie.should_receive(:same_director).with("1").and_return(@fake_results)
+			post :search_same_director, {:id => "1"}
+		end
+		describe 'after valid search' do
+			before :each do
+				Movie.stub(:same_director).and_return(@fake_results)
+				post :search_same_director, {:id => "1"}
+			end
+			it 'should go to the same director movie page' do
+				response.should render_template('search_same_director')
+			end
+			it 'should make the movies with the same directors available to the page' do
+				assigns(:movies).should == @fake_results
+			end
+		end
+		describe 'the movie had no director info' do
+			before :each do
+				Movie.stub(:same_director).and_return("Aladdin")
+				post :search_same_director, {:id => "1"}
+			end
+			it 'should go to the home page' do
+				response.should redirect_to('/movies')
+			end
+			it 'should flash a message about no director info to the home page' do
+				flash[:notice].should == "\'Aladdin\' has no director info"
+			end
+		end
+	end
+end

@@ -1,0 +1,19 @@
+fake_movie1:
+  id: 1
+  title: Avatar
+  rating: PG-13
+  director: James Cameron
+  release_date: 2010-09-07
+
+fake_movie2:
+  id: 2 
+  title: Terminator
+  rating: R
+  director: James Cameron
+  release_date: 1992-06-11
+
+fake_movie3:
+  id: 3
+  title: Aladdin
+  rating: G
+  release_date: 2000-11-30

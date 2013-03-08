@@ -67,7 +67,7 @@ Then /I should see none of the movies/ do
 	assert rows.length-1 == 0
 end
 
-Then /the director of "(.*)" should be "(.*)"/ do |movie, dir|
+Then /the Director of "(.*)" should be "(.*)"/ do |movie, dir|
 	assert Movie.find_by_title(movie).director == dir
 end
 

@@ -1,5 +1,5 @@
 Cosc480Homework3::Application.routes.draw do
-	match '/movies/search_same_director/:id'=>'movies#search_same_director', :as => :movies_directed_by
+	match '/movies/search_same_director/:id/:director'=>'movies#search_same_director', :as => :movies_directed_by
   resources :movies
   root :to => redirect('/movies')
 

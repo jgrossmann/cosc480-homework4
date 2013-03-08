@@ -12,6 +12,9 @@ class MoviesController < ApplicationController
 		if @movies.class == String
 			flash[:notice] = "\'#{@movies}\' has no director info"
 			redirect_to movies_path
+		elsif @movies.length <= 1
+			flash[:notice] = "#{Movie.find(@movie_id).director} did not direct any other movies in the database."
+			redirect_to movies_path
 		end
 	end
 

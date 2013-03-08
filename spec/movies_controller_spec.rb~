@@ -1,0 +1,16 @@
+require 'spec_helper'
+
+describe MoviesController do
+	describe 'searching for movies with same director' do
+		#fixtures :movies
+		it 'should call the model method that performs same director search' do
+			fake_results = [mock('movie1'), mock('movie2')]
+			fake_movie = mock('movie')
+			fake_movie.stub(:id).and_return(1)
+			fake_movie.stub(:director).and_return("James Cameron")
+			fake_movie.stub(:title).and_return("Terminator")
+			Movie.should_receive(:same_director).with("director").and_return(:fake_results)
+			post :search_same_director, {:id => fake_movie.id}
+		end
+	end
+end

@@ -5,6 +5,9 @@ class Movie < ActiveRecord::Base
   end
 	def self.same_director(id)
 		movie = self.find(id)
+		if movie == nil
+			return nil
+		end
 		if(movie.director == nil || movie.director == "")
 			return movie.title
 		end
